@@ -1,3 +1,7 @@
+// problems
+// 1. NOT unify index convention of js and moves
+// 2. NOT consider size of the board
+
 function solution(board, moves) {
     const outlet = [];
     let pang = 0;

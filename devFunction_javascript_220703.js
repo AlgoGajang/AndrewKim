@@ -1,3 +1,7 @@
+// problems
+// 1. NOT consider case when initial 0th element is 100
+// 2. NOT remove 0th speed element
+
 function solution(progresses, speeds) {
     // number of deployed programs
     let deployCount = 0;
