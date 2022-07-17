@@ -3,7 +3,7 @@
 
 function solution(brown, yellow) {
     let row, col;
-    //
+    // consider when yellow carpet is not single line
     let devideBy = 1;
     // brute force dividing
     while (yellow >= devideBy) {
