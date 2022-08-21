@@ -1,39 +1,42 @@
+# import copy module for using deepcopy method 
 import copy
 
 def solution(k, dungeons):
-    a = [1, 2, 3]
-    li = []
+    dungeon_set_permu = []
     
-    b = copy.deepcopy(a)
-    
-    def permu(a, size):
+    # determine all permutation list using Heap's algorithm
+    def permutation(li, size):
+        # case when it doesn't need to exchange element
         if size == 1:
-            b = copy.deepcopy(a)
-            li.append(b)
-            # print(a)
+            # deepcopy for reference type
+            temp = copy.deepcopy(li)
+            dungeon_set_permu.append(temp)
             return 0
-            
+        
         for i in range(size):
-            permu(a, size - 1)
+            # recurrsion
+            permutation(li, size - 1)
             
             if size & 1:
-                a[0], a[size - 1] = a[size - 1], a[0]
+                li[0], li[size - 1] = li[size - 1], li[0]
             else:
-                a[i], a[size - 1] = a[size - 1], a[i]
+                li[i], li[size - 1] = li[size - 1], li[i]
             
-    
-    permu(dungeons, len(dungeons))
-    a = []
-    for dungeonSet in li:
+    # determine permutation of touring all dungeons
+    permutation(dungeons, len(dungeons))
+    # list of the number of dungeons that player deal with each case
+    num_of_dungeon = []
+    for dungeon_set in dungeon_set_permu:
         count = 0
         k_temp = copy.copy(k)
-        for dungeon in dungeonSet:
+        for dungeon in dungeon_set:
+            # case when health is not enough to go dungeon
             if k_temp < dungeon[0]:
-                a.append(count)
+                num_of_dungeon.append(count)
                 break
             else:
                 k_temp -= dungeon[1]
                 count += 1
-            if k_temp > 0 and count == len(dungeonSet):
-                a.append(count)    
-    return max(a)
+            if k_temp > 0 and count == len(dungeon_set):
+                num_of_dungeon.append(count)
+    return max(num_of_dungeon)
