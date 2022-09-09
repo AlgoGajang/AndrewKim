@@ -38,5 +38,5 @@ def solution(k, dungeons):
                 k_temp -= dungeon[1]
                 count += 1
             if k_temp > 0 and count == len(dungeon_set):
-                num_of_dungeon.append(count)
+                return len(dungeon_set);
     return max(num_of_dungeon)
